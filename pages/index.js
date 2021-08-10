@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Hero from '../components/Hero'
+import LargeCard from '../components/LargeCard';
 import MediumCard from '../components/MediumCard';
 import Navbar from '../components/Navbar'
 import SmallCard from '../components/SmallCard';
@@ -35,6 +36,12 @@ export default function Home({exploreData,cardData}) {
 						))}
 					</div>
 				</section>
+				<LargeCard
+					img="https://links.papareact.com/4cj"
+					title="Travel without boundries"
+					description="Curated by Airbnb"
+					btnText="Explore Now"
+				/>
 			</main>
 		</div>
 	);
