@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar'
 import SmallCard from '../components/SmallCard';
 
 export default function Home({exploreData,cardData}) {
-	console.log(cardData)
+	
   return (
 		<div className="">
 			<Head>
