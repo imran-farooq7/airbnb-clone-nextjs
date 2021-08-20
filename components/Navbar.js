@@ -8,7 +8,7 @@ import { DateRangePicker } from 'react-date-range';
 import { useRouter } from 'next/dist/client/router';
 
 
-const Navbar = () => {
+const Navbar = ({placeholder}) => {
 	const [searchValue, setSearchValue] = useState("");
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
@@ -27,8 +27,19 @@ const Navbar = () => {
 	}
 	const route = useRouter();
 	const handleOnClickSearch = () => {
-route.push("/search")
+route.push({
+	pathname: "/search",
+	query: {
+		location: searchValue,
+		startDate: startDate.toISOString(),
+		endDate: endDate.toISOString(),
+		guests: guests,
+	},
+});
 	}
+	const handleOnClickLogo = () => {
+		route.push("/");
+	};
     return (
 			<header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md md:p-5 p-3">
 				<div className="flex relative items-center h-10 cursor-pointer my-auto">
@@ -37,12 +48,13 @@ route.push("/search")
 						layout="fill"
 						objectFit="contain"
 						objectPosition="left"
+						onClick={handleOnClickLogo}
 					/>
 				</div>
 				<div className="flex md:border-2 rounded-full p-2 md:shadow-md">
 					<input
 						type="text"
-						placeholder="Start your search here"
+						placeholder={placeholder || "Start your search here"}
 						className="bg-transparent flex-grow outline-none text-sm text-black"
 						value={searchValue}
 						onChange={(e) => setSearchValue(e.target.value)}
